@@ -35,6 +35,6 @@ while True:
 
 print(rec.FinalResult())
 
-with open('result.txt', 'rb') as f:
+with open('result.txt', 'w') as f:
     f.write(rec.FinalResult())
     print("Result is saved")

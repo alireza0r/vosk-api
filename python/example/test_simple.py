@@ -24,17 +24,22 @@ rec = KaldiRecognizer(model, wf.getframerate())
 rec.SetWords(True)
 rec.SetPartialWords(True)
 
+results = []
+
 while True:
     data = wf.readframes(4000)
     if len(data) == 0:
         break
     if rec.AcceptWaveform(data):
-        print(rec.Result())
+        res = rec.Result()
+        print(res)
+        results.append(res)
     else:
         print(rec.PartialResult())
 
 print(rec.FinalResult())
 
 with open('result.txt', 'w') as f:
-    f.write(rec.FinalResult())
+    for r in results:
+        f.write(r)
     print("Result is saved")
